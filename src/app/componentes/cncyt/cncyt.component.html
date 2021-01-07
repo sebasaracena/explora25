@@ -1,0 +1,93 @@
+<br />
+
+<div class="container">
+    <h3 class="text-center"> CNCyT {{chile}}</h3>
+    <hr />
+    <div class="row">
+        <div class="col-md-8">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Buscar: </div>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="cncyt.term" name="term" (keydown.enter)='ChangeSearch(cncyt.term)' (keydown.backspace)='Borrar()' #seba placeholder="//Busque una palabra y presione enter/">
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <select [(ngModel)]="cncyt.anio" (change)="seleccion_anio()" class="form-control">
+                                        <option value="all">-- Ultimos tres Años --</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                      </select>
+
+        </div>
+
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-5">
+            <div class="map" id="map">
+
+            </div>
+            <hr />
+        </div>
+        <div class="col-md-7">
+            <div class="map table-responsive">
+                <table class="table border-1">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Cod_region</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Proyectos</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let cncyt of proyecto">
+                            <th><button class="btn btn-info mr-1" (click)="get_codregion(cncyt.cod_region,cncyt.region)">{{cncyt.cod_region}}</button></th>
+                            <td>{{cncyt.region}} </td>
+                            <td>{{cncyt.cantidad}} </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="map table-responsive">
+                <div class="map table-responsive">
+                    <table class="table border-1">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Cod_poryecto</th>
+                                <th scope="col">Region</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Asesoria</th>
+                                <th scope="col">Año</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let cncyt of trabajo">
+                                <th><button class="btn btn-info mr-1" (click)="get_trabajo(cncyt.cod_proyecto)">{{cncyt.cod_proyecto}}</button></th>
+                                <td>{{cncyt.region}} </td>
+                                <td>{{cncyt.categoria}} </td>
+                                <td>{{cncyt.asesoria}} </td>
+                                <td>{{cncyt.anio}} </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

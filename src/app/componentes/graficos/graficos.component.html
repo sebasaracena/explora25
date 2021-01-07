@@ -1,0 +1,152 @@
+<br />
+<h1 class="text-center">Crecyt Explora Arica y Parinacota {{cartografia.anio}}</h1>
+<hr />
+<h3 class="text-center">{{rbd}} - {{colegio}}</h3>
+<hr />
+<div class="container">
+    <div class="col-auto">
+
+        <div class="row">
+
+
+            <div class="col-md-8">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Buscar: </div>
+                    </div>
+                    <input type="text" class="form-control" [(ngModel)]="cartografia.term" (keyup)='onChangeSearch(seba.value)' #seba placeholder="//Ingrese el establecimiento para la busqueda/">
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <select [(ngModel)]="cartografia.anio" (change)="seleccion_anio()" class="form-control">
+                                        <option value="all">-- Ultimos tres Años --</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                      </select>
+
+            </div>
+        </div>
+
+
+    </div>
+    <hr />
+    <div class="row">
+        <div class="map col-md-6" id="map">
+
+        </div>
+        <div class="col-md-5">
+            <div style="display: block;">
+                <div class="row">
+                    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend" [colors]="pieChartColors">
+      </canvas>
+                </div>
+                <hr />
+                <div class="row container">
+
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Espacio</th>
+                                <th scope="col">Cantidad</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let crecyt of espacio">
+                                <td>{{crecyt.espacio}} </td>
+                                <td>{{crecyt.cantidad}}</td>
+
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <h4 class="text-center"> Categoria {{categorias}}</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-7">
+            <div style="display: block;">
+                <canvas baseChart width="100" height="80" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartClick)="chartClicked($event)">
+                  </canvas>
+            </div>
+
+
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <br />
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Dependencia</th>
+                            <th scope="col">Cantidad</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let crecyt of dependencia">
+                            <td>{{crecyt.dependencia}} </td>
+                            <td>{{crecyt.cantidad}}</td>
+
+
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <th>{{total}}</th>
+
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <br />
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Asesoria</th>
+                            <th scope="col">Cantidad</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let crecyt of asesoria">
+                            <td>{{crecyt.asesoria}} </td>
+                            <td>{{crecyt.cantidad}}</td>
+
+
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <th>{{total_asesoria}}</th>
+
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
