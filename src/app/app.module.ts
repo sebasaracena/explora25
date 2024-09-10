@@ -14,7 +14,7 @@ import {  MatPaginatorModule
 import { FooterComponent } from './paginas/footer/footer.component';
 import { NavComponent } from './paginas/nav/nav.component';
 import { GraficosComponent } from './componentes/graficos/graficos.component';
-import { ChartsModule } from 'ng2-charts';
+import { ChartsModule, ThemeService } from 'ng2-charts';
 import { CncytComponent } from './componentes/cncyt/cncyt.component';
 
 
@@ -38,7 +38,7 @@ import { CncytComponent } from './componentes/cncyt/cncyt.component';
     ChartsModule,
     MatPaginatorModule
   ],
-  providers: [MapaService],
+  providers: [MapaService,ThemeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"  # Mapea el puerto 80 del contenedor al puerto 8080 en tu máquina local
+    container_name: explora25  # Nombre del contenedor
+    restart: unless-stopped

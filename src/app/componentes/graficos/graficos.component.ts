@@ -10,6 +10,7 @@ declare let L;
   selector: 'app-graficos',
   templateUrl: './graficos.component.html',
   styleUrls: ['./graficos.component.css']
+ 
 })
 export class GraficosComponent implements OnInit {
   //datos publicos para un grafico de barras//
@@ -71,23 +72,23 @@ export class GraficosComponent implements OnInit {
   }
   constructor(private mapas:MapaService) { }
 
-  ngOnInit() {
-    this.pie_chart();
-    this.iniciar_mapa();
-    this.put_layer();
+async ngOnInit() {
+    await this.pie_chart();
+    await this.iniciar_mapa();
+    await this.put_layer();
     this.get_espacio();
-    this.get_categoria();
+    await this.get_categoria();
     this.get_dependencia();
     this.get_asesoria();  
   }
   // funciones de graficos
-  pie_chart(){
-    this.mapas.get_genero(this.cartografia).subscribe(
-      resp=>{
+  async pie_chart(){
+        this.docente= await this.mapas.get_genero(this.cartografia).toPromise();
+   
         let cantidad=[];
         let nombres=[];
         
-        this.docente=resp;
+       
         for(let i=0;i<Object.keys(this.docente).length;i++){
           cantidad.push(this.docente[i].cantidad);
           nombres.push(this.docente[i].genero);
@@ -95,27 +96,28 @@ export class GraficosComponent implements OnInit {
         
         this.pieChartData=cantidad;
          this.pieChartLabels=nombres;
-      }
-    );
+    
+
+
   }
 
-  get_categoria(){
-    this.mapas.get_categoria(this.cartografia).subscribe(
-      resp=>{
+  async get_categoria(){
+    this.categoria= await this.mapas.get_categoria(this.cartografia).toPromise()
+     
         let cantidad=[];
         let nombres=[];
         
-        this.categoria=resp;
+      
         for(let i=0;i<Object.keys(this.categoria).length;i++){
           cantidad.push(this.categoria[i].cantidad);
           nombres.push(this.categoria[i].categoria);
        }
         
-       this.lineChartData=[{data: cantidad,label:'Categoria'}];
        
+       this.lineChartData=[{data: cantidad,label:'Categoria'}];
+       console.log(this.lineChartData);
        this.lineChartLabels=nombres;   
-      }
-    );
+     
   }
 
   chartClicked(e:any): void {
@@ -138,12 +140,13 @@ export class GraficosComponent implements OnInit {
        }
   }
 //funciones para la cartografia//
-  iniciar_mapa(){
-    const mapOSM = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic3VwZXJzYngwMCIsImEiOiJjaWpsZ3FsN3QwMDIydGhtNTh4aGhubG5xIn0.i2J0k0mBZhIi7W-bsPTJiQ", {
-        maxZoom: 18,
-        minZoom: 8,
-        id: "mapbox.streets"
-    });
+  async iniciar_mapa(){
+    const mapOSM = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+      maxZoom: 18,
+      minZoom: 8,
+      id: "mapbox/streets-v11",
+      accessToken: "pk.eyJ1IjoiZXhwbG9yYXNlYmEiLCJhIjoiY2tmems0dDExMXQ2NjJ6bzkxN3JwYzBnOCJ9.Ln66c12JsKnrctLhNpkEBg"
+  });
 
     this.map = L.map("map", {
       zoom: 6,
@@ -153,7 +156,7 @@ export class GraficosComponent implements OnInit {
  
    this.map.on("click", e => {
      
-    this.reiniciar_mapa();
+      this.reiniciar_mapa();
     //console.log(e.latlng); // get the coordinates
   });
 
@@ -255,22 +258,15 @@ this.Layer.on('click',e => {
 return 0;
 }
 
-put_layer(){
-  this.mapas.get_layer_grafico(this.cartografia).subscribe(
-    resp=>{
-      
-       if(this.Layer!=null) this.map.removeLayer(this.Layer);
-      if(resp!="no existe"){
-        
+async put_layer(){
+  let resp = await this.mapas.get_layer_grafico(this.cartografia).toPromise();
+  if(this.Layer!=null) this.map.removeLayer(this.Layer);
+  if(resp!="no existe") this.construir_layer(this.map,resp);
 
-      this.construir_layer(this.map,resp);
-      }
-    }
-  );
 
 }
 
-reiniciar_mapa(){
+async reiniciar_mapa(){
    localStorage.setItem("rbd","all");
    localStorage.setItem("colegio","Establecimiento");
    
@@ -281,9 +277,9 @@ reiniciar_mapa(){
     this.cartografia.categoria='all';
     this.categorias='Todas';
    this.map.removeLayer(this.Layer);
-   this.put_layer();
-   this.pie_chart();
-   this.get_categoria();
+   await this.put_layer();
+   await this.pie_chart();
+   await this.get_categoria();
    this.get_dependencia();
    this.get_asesoria();
 }

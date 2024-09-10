@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cartografia } from '../modelo/cartografia';
 import { Cncyt } from '../modelo/cncyt';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapaService {
-  API_URL="http://exploraxv.uta.cl/bd/consult/public/establecimiento.php/api";
-  //API_URL="http://localhost/consult/public/establecimiento.php/api";
+  
+  API_URL=environment.apiBD;
   
   content='';
   constructor(private http:HttpClient) { }

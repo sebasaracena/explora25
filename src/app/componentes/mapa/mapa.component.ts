@@ -69,11 +69,12 @@ export class MapaComponent implements OnInit {
   }
 
   iniciar_mapa(){
-    const mapOSM = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic3VwZXJzYngwMCIsImEiOiJjaWpsZ3FsN3QwMDIydGhtNTh4aGhubG5xIn0.i2J0k0mBZhIi7W-bsPTJiQ", {
-        maxZoom: 18,
-        minZoom: 8,
-        id: "mapbox.streets"
-    });
+    const mapOSM = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+      maxZoom: 18,
+      minZoom: 8,
+      id: "mapbox/streets-v11",
+      accessToken: "pk.eyJ1IjoiZXhwbG9yYXNlYmEiLCJhIjoiY2tmems0dDExMXQ2NjJ6bzkxN3JwYzBnOCJ9.Ln66c12JsKnrctLhNpkEBg"
+  });
 
     this.map = L.map("map", {
       zoom: 6,
