@@ -1,11 +1,11 @@
-<br />
+
+<div class="container-xl mt-5" (window:resize)="onresize($event)" >
 <h1 class="text-center">Crecyt Explora Arica y Parinacota {{cartografia.anio}}</h1>
 <hr />
 <h3 class="text-center">{{rbd}} - {{colegio}}</h3>
 <hr />
 
 
-<div class="container">
     <div class="col-auto">
 
         <div class="row">
@@ -39,11 +39,11 @@
             <div class="map" id="map">
 
             </div>
-            <hr />
+            <ng-container *ngIf="innerWidth>450">  <hr /></ng-container>
         </div>
 
         <div class="col-md-4">
-            <div class="map table-responsive">
+            <div class="table-fixed-header">
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -56,7 +56,7 @@
                     <tbody>
 
                         <tr *ngFor="let crecyt of establecimiento">
-                            <th><button class="btn btn-info mr-1" (click)="buscar_carto(crecyt.rbd)">{{crecyt.rbd}}</button></th>
+                            <th (mousedown)="buscar_carto(crecyt.rbd)">{{crecyt.rbd}}</th>
                             <td>{{crecyt.n_colegio}} </td>
                             <td>{{crecyt.dependencia}}</td>
 
@@ -67,18 +67,17 @@
                 </table>
             </div>
 
-            <hr />
-
+            <ng-container *ngIf="innerWidth>450">  <hr /></ng-container>
 
 
         </div>
 
     </div>
-
+    
     <hr />
     <div class="row">
         <div class="col-md-6">
-            <div class="map table-responsive">
+            <div class="table-fixed-header">
                 <table class="table border-1">
                     <thead class="thead-dark">
                         <tr>
@@ -92,7 +91,7 @@
                     <tbody>
 
                         <tr *ngFor="let crecyt of trabajo">
-                            <th><button class="btn btn-info mr-1" (click)="get_trabajo(crecyt.cod_proyecto)">{{crecyt.cod_proyecto}}</button></th>
+                            <th (mousedown)="get_trabajo(crecyt.cod_proyecto)">{{crecyt.cod_proyecto}}</th>
                             <td>{{crecyt.categoria}} </td>
                             <td>{{crecyt.seleccion}}</td>
                             <!-- <td>{{crecyt.puntaje | number}}</td> -->
@@ -104,25 +103,22 @@
                 </table>
             </div>
             <hr />
-            <hr />
         </div>
-
+        <ng-container *ngIf="innerWidth>450">  <hr /></ng-container>
         <div class="col-md-6">
-            <div class="map table-responsive">
+            <div class="table-fixed-header">
                 <table class="table border-1">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">Cod</th>
                             <th scope="col">Nombre</th>
-
-
                             <th scope="col">Año</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         <tr *ngFor="let crecyt of docente">
-                            <td><button class="btn btn-info mr-1" (click)="get_trabajo(crecyt.cod_proyecto)">{{crecyt.cod_proyecto}}</button></td>
+                            <th (mousedown)="get_trabajo(crecyt.cod_proyecto)">{{crecyt.cod_proyecto}}</th>
                             <td>{{crecyt.n_profe}} </td>
 
                             <td>{{crecyt.anio}}</td>
@@ -135,6 +131,6 @@
 
         </div>
         <hr />
-        <hr />
+        
     </div>
 </div>

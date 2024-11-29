@@ -1,48 +1,37 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-nav-explora">
+    <div class="d-flex align-items-center w-50">
+        <!-- Logo -->
+        <a class="navbar-brand" href="https://www.explora.cl/" target="_blank">
+            <img class="img-logo" src="./assets/logo/explora-blanca.png" alt="Explora" style="width: 30%; max-height: auto;">
+        </a>
 
-    <a class="navbar-brand" href="#"><i class="fas fa-project-diagram"></i> Redes Explora</a>
+        <!-- Botón del menú después del logo -->
+        <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
 
-
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <!-- Menú colapsable alineado a la derecha -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo03">
+        <ul class="navbar-nav">
+            <!-- Menú desplegable de Establecimientos -->
             <li class="nav-item dropdown" routerLinkActive="active">
-
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chalkboard-teacher"></i>  Establecimientos</a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-chalkboard-teacher"></i> Establecimientos
+                </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" routerLink="mapa"> <i class="fas fa-map-marked-alt"></i> Mapas Crecyt</a>
-                    <!-- <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" routerLink="graficos"><i class="fas fa-atlas"></i> Dashboard Crecyt</a> -->
-
+                    <a class="dropdown-item" routerLink="mapa">
+                        <i class="fas fa-map-marked-alt"></i> Mapas Crecyt
+                    </a>
                 </div>
-
             </li>
+            <!-- Link a Datos Cncyt -->
             <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" routerLink="cncyt"><i class="fas fa-chart-line"></i> Datos Cncyt </a>
+                <a class="nav-link" routerLink="cncyt">
+                    <i class="fas fa-chart-line"></i> Datos Cncyt
+                </a>
             </li>
         </ul>
     </div>
-    <!-- <li class="nav-item dropdown" routerLinkActive="active">
-
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chalkboard-teacher"></i>  Establecimientos</a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" routerLink="establecimientos"> <i class="fas fa-chalkboard"></i> Inscritos</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" routerLink="mineduc"><i class="fas fa-school"></i> Lista Mineduc</a>
-
-                </div>
-
-            </li>
-            <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" routerLink="estadisticas"><i class="fas fa-chart-line"></i> Estadisticas </a>
-            </li>
-
-        </ul>
-        <button class="btn btn-outline-light my-2 my-sm-0" *ngIf="!auth.loggedIn">Log In <i class="fas fa-sign-in-alt"></i></button>
-        <button class="btn btn-outline-light my-2 my-sm-0" (click)="logout()" *ngIf="auth.loggedIn">Log Out <i class="fas fa-sign-out-alt"></i></button> -->
-
-
-    <!-- </div> -->
 </nav>
+

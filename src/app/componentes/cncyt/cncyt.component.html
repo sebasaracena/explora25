@@ -1,6 +1,6 @@
-<br />
 
-<div class="container">
+
+<div class="container-xl mt-5">
     <h3 class="text-center"> CNCyT {{chile}}</h3>
     <hr />
     <div class="row">
@@ -33,7 +33,7 @@
             <hr />
         </div>
         <div class="col-md-7">
-            <div class="map table-responsive">
+            <div class="table-fixed-header table_cncyt">
                 <table class="table border-1">
                     <thead class="thead-dark">
                         <tr>
@@ -46,7 +46,7 @@
                     <tbody>
 
                         <tr *ngFor="let cncyt of proyecto">
-                            <th><button class="btn btn-info mr-1" (click)="get_codregion(cncyt.cod_region,cncyt.region)">{{cncyt.cod_region}}</button></th>
+                            <th (mousedown)="get_codregion(cncyt.cod_region,cncyt.region)">{{cncyt.cod_region}}</th>
                             <td>{{cncyt.region}} </td>
                             <td>{{cncyt.cantidad}} </td>
 
@@ -60,8 +60,8 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="map table-responsive">
-                <div class="map table-responsive">
+            <div class="table-fixed-header">
+                
                     <table class="table border-1">
                         <thead class="thead-dark">
                             <tr>
@@ -75,7 +75,7 @@
                         <tbody>
 
                             <tr *ngFor="let cncyt of trabajo">
-                                <th><button class="btn btn-info mr-1" (click)="get_trabajo(cncyt.cod_proyecto)">{{cncyt.cod_proyecto}}</button></th>
+                                <th (mousedown)="get_trabajo(cncyt.cod_proyecto)">{{cncyt.cod_proyecto}}</th>
                                 <td>{{cncyt.region}} </td>
                                 <td>{{cncyt.categoria}} </td>
                                 <td>{{cncyt.asesoria}} </td>
@@ -85,7 +85,7 @@
                         </tbody>
 
                     </table>
-                </div>
+               
 
             </div>
         </div>

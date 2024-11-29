@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MapaService } from '../../servicio/mapa.service';
 
 import { Cartografia } from '../../modelo/cartografia';
@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 
 
 declare let L;
+
+
 
 @Component({
   selector: 'app-mapa',
@@ -16,7 +18,9 @@ export class MapaComponent implements OnInit {
   
 
   constructor(private mapas:MapaService) { }
-  
+
+  innerWidth:number; 
+
  Layer:any;
   displayedColumns: string[] = ['rbd','n_colegio'];
    dataSource:any; 
@@ -235,7 +239,10 @@ return 0;
 
 
   }
-
+  @HostListener('window:resize', ['$event'])
+  onresize(event) {
+    this.innerWidth = window.innerWidth;
+  }
   buscar_carto(rbd:string){
     this.map.removeLayer(this.Layer);
     this.cartografia.rbd=rbd;
@@ -324,14 +331,14 @@ return 0;
           {
             title:this.proyecto[0].cod_proyecto,
             html: '<hr/><div class="text_center">'+this.proyecto[0].nombre+'</div><hr/>'+
-            ' <div class="map table-responsive"><table class="table border-1"><thead><tr><th scope="col">Categoria</th><th scope="col">Año</th></tr></thead>'+
+            ' <div class="table-fixed-header"><table class="table border-1"><thead style="background-color: #5e659c;color:white"><tr><th scope="col">Categoria</th><th scope="col">Año</th></tr></thead>'+
                 '<tbody>'+
                    '<tr>'+
                         '<td>'+this.proyecto[0].categoria+'</td>'+
                        '<td>'+this.proyecto[0].anio+'</td>'+
                        '</tr></tbody></table></div>'+
                       
-            ' <div class="map table-responsive"><table class="table border-1"><thead><tr><th scope="col">Region</th><th scope="col">Comuna</th></tr></thead>'+
+            ' <div class="map table-responsive"><table class="table border-1"><thead style="background-color: #5e659c;color:white"><tr><th scope="col">Region</th><th scope="col">Comuna</th></tr></thead>'+
                 '<tbody>'+
                    '<tr>'+
                         '<td>'+this.proyecto[0].region+'</td>'+
@@ -388,9 +395,10 @@ return 0;
   get_html(pregion:any,total:number):string{
     //console.log(pregion);
     
-    let html='<hr/><h6>'+ total+' Trabajos Presentados</h6> <hr/><div class="table-responsive">'+
-               '<table class="map table border-1" style="height: 250px; overflow:auto;">'+
-        '<thead class="thead-dark">'+
+    let html='<hr/><h6>'+ total+' Trabajos Presentados</h6> <hr/> <div class="table-fixed-header">'+
+               
+    '<table class="map table border-1" style="overflow:auto;">'+
+        '<thead style="background-color: #5e659c;color:white">'+
             '<tr>'+
                 
                 
@@ -416,6 +424,7 @@ return 0;
     return html;
   }
 }
+
 
 //funciones para el mapa.
 function clickcambio(val1:string,val2:string){

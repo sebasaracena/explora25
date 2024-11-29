@@ -1,0 +1,12 @@
+.bg-nav-explora{
+    background-color: #5e659c;
+}
+ /* Estilos para dispositivos móviles */
+ @media (max-width: 768px) {
+    .navbar-toggler {
+        margin-left: 10px; /* Espaciado entre el logo y el botón */
+    }
+    .navbar-brand img {
+        margin-bottom: 5px; /* Margen inferior en móviles */
+    }
+}

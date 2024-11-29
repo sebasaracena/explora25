@@ -284,8 +284,8 @@ return {
    
     
     let html='<hr/><h6>'+ total+' Trabajos Presentados</h6> <hr/><div class="table-responsive">'+
-               '<table class="map table border-1" style="height: 250px; overflow:auto;">'+
-        '<thead class="thead-dark">'+
+               '<table class="map table border-1" style="overflow:auto;">'+
+        '<thead style="background-color: #5e659c;color:white">'+
             '<tr>'+
                 
                 
@@ -333,20 +333,20 @@ return {
         {
           title:this.presentacion[0].cod_proyecto,
           html: '<hr/><div class="text_center">'+this.presentacion[0].nombre+'</div><hr/>'+
-          ' <div class="map table-responsive"><table class="table border-1"><thead><tr><th scope="col">Categoria</th><th scope="col">Año</th></tr></thead>'+
+          ' <div class="map table-responsive"><table class="table border-1"><thead style="background-color: #5e659c;color:white"><tr><th scope="col">Categoria</th><th scope="col">Año</th></tr></thead>'+
               '<tbody>'+
                  '<tr>'+
                       '<td>'+this.presentacion[0].categoria+'</td>'+
                      '<td>'+this.presentacion[0].anio+'</td>'+
                      '</tr></tbody></table></div>'+
                     
-          ' <div class="map table-responsive"><table class="table border-1"><thead><tr><th scope="col">Region</th><th scope="col">Comuna</th></tr></thead>'+
+          ' <div class="map table-responsive"><table class="table border-1"><thead style="background-color: #5e659c;color:white"><tr><th scope="col">Region</th><th scope="col">Comuna</th></tr></thead>'+
               '<tbody>'+
                  '<tr>'+
                       '<td>'+this.presentacion[0].region+'</td>'+
                      '<td>'+this.presentacion[0].comuna+'</td>'+
                      '</tr></tbody></table></div>'+
-                     ' <div class="map table-responsive"><table class="table border-1"><thead><tr><th scope="col">Asesoria</th><th scope="col">Dependencia</th></tr></thead>'+
+                     ' <div class="map table-responsive"><table class="table border-1"><thead style="background-color: #5e659c;color:white"><tr><th scope="col">Asesoria</th><th scope="col">Dependencia</th></tr></thead>'+
                      '<tbody>'+
                         '<tr>'+
                              '<td>'+this.presentacion[0].asesoria+'</td>'+
